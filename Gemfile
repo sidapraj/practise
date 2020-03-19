@@ -39,6 +39,10 @@ group :development, :test do
   gem 'rspec-rails', '~> 4.0.0.rc1'
 end
 
+group :test do
+  gem 'shoulda-matchers'
+end
+
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
