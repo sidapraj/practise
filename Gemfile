@@ -4,9 +4,12 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.10'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3','~>1.3.6'
+gem 'pg', '0.18.1'
+
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
+gem 'simple_form'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -37,15 +40,19 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   # Note that rspec-rails 4.0 is still a pre release
   gem 'rspec-rails', '~> 4.0.0.rc1'
+
+ 
 end
 
 group :test do
   gem 'shoulda-matchers'
+ 
 end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
+  
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
