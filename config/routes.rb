@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :words
+  resources :words, only: %i[index new create] 
     root "words#index"
 
   # The priority is based upon order of creation: first created -> highest priority.
