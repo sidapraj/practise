@@ -5,13 +5,14 @@ default: &default
 
 development:
   <<: *default
-  database: Practise_development
-  username: Idfy  
+  database: practise__development
+  username: idfy  
+  password: user
 
 test:
   <<: *default
-  database: Practise_test
-  username: Idfy  
+  database: practise__test
+  username: idfy  
   password: user
 
 production:
