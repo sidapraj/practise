@@ -27,4 +27,40 @@ RSpec.describe WordsController, type: :controller do
     end
   end
 end
+  describe 'GET NEW' do
+    before { get :new }
+
+    it 'assigns @word' do
+      expect(assigns(:word)).to be_a_new(Word)
+    end
+  
+    it 'renders the new template' do
+     expect(response).to render_template(:new)
+   end
+ end
+
+ describe 'Post Create' do
+   subject { post :create, params }
+
+   context 'valid  params' do
+     let(:params) do
+       { word: { value: 'cat', language: 'English' } }
+     end
+
+     it 'creates a new word' do
+       expect { subject }.to change(Word, :count).from(0).to(1)
+     end
+   end
+
+   context 'invalid params' do
+    let(:params) do
+      { word: { value: 'cat' } }
+    end
+
+    it 'does not creates a new word' do
+      expect { subject }.not_to change(Word, :count)
+    end
+  end
 end
+end
+

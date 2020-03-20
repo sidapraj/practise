@@ -14,6 +14,7 @@ gem 'simple_form'
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
+
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 gem 'factory_bot_rails'
@@ -29,7 +30,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
+gem 'bootstrap', '~> 4.4.1'
+gem 'jquery-rails'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -39,8 +41,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 group :development, :test do
   # Note that rspec-rails 4.0 is still a pre release
+  gem 'pry-rails'
   gem 'rspec-rails', '~> 4.0.0.rc1'
-
+  
+  
  
 end
 
