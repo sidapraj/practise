@@ -43,8 +43,9 @@ end
    subject { post :create, params }
 
    context 'valid  params' do
+     let!(:language) { create(:language) }
      let(:params) do
-       { word: { content: 'cat' } }
+       { word: { content: 'cat', language_id: language.id } }
      end
 
      it 'creates a new word' do
