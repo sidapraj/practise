@@ -8,7 +8,7 @@ RSpec.describe WordsController, type: :controller do
       let!(:word) { create(:word) }
 
       it 'assigns @words' do
-      # word = Word.create(value: 'cat', language: 'English')
+      # word = Word.create(content: 'cat', language: 'English')
       # word = create(:word)
         expect(assigns(:words)).to eq([word])
       end
@@ -44,7 +44,7 @@ end
 
    context 'valid  params' do
      let(:params) do
-       { word: { value: 'cat', language: 'English' } }
+       { word: { content: 'cat', language: 'English' } }
      end
 
      it 'creates a new word' do
@@ -54,7 +54,7 @@ end
 
    context 'invalid params' do
     let(:params) do
-      { word: { value: 'cat' } }
+      { word: { content: 'cat' } }
     end
 
     it 'does not creates a new word' do

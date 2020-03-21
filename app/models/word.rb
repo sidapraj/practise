@@ -1,3 +1,3 @@
 class Word < ActiveRecord::Base
-  validates :value, :language, presence: true
+  validates :content, :language, presence: true
 end
