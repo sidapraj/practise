@@ -44,7 +44,7 @@ end
 
    context 'valid  params' do
      let(:params) do
-       { word: { content: 'cat', language: 'English' } }
+       { word: { content: 'cat' } }
      end
 
      it 'creates a new word' do
@@ -54,7 +54,7 @@ end
 
    context 'invalid params' do
     let(:params) do
-      { word: { content: 'cat' } }
+      { word: { content: '' } }
     end
 
     it 'does not creates a new word' do
