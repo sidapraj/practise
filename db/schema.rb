@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200321110457) do
+ActiveRecord::Schema.define(version: 20200321120338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,8 +24,12 @@ ActiveRecord::Schema.define(version: 20200321110457) do
 
   create_table "words", force: :cascade do |t|
     t.string   "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "language_id"
   end
 
+  add_index "words", ["language_id"], name: "index_words_on_language_id", using: :btree
+
+  add_foreign_key "words", "languages"
 end
