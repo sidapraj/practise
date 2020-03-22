@@ -32,6 +32,16 @@ class WordsController < ApplicationController
     def show
         @word = Word.find(params[:id])
     end
+
+    def destroy
+        @word = Word.find(params[:id])
+        if @word.destroy
+            redirect_to(words_path)
+        else
+            render :index
+        end
+    end
+
     private
 
     def word_params

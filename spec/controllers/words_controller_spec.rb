@@ -129,5 +129,22 @@ describe 'PUT Update' do
    end
  end
 end
+
+describe 'Delete destroy' do
+  subject { delete :destroy, params }
+
+  let!(:word) { create(:word) }
+  let!(:language_1) { create(:language, name: 'English') }
+  let!(:language_2) { create(:language, name: 'Polish') }
+  context 'valid  params' do
+    let(:params) do
+      { id:word.id }
+    end
+
+    it 'deletes word' do
+      expect { subject }.to change(Word, :count).from(1).to(0)
+    end
+  end
+end
 end
 
