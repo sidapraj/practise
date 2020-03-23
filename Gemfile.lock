@@ -48,6 +48,7 @@ GEM
     bootstrap4-kaminari-views (1.0.1)
       kaminari (>= 0.13)
       rails (>= 3.1)
+    brakeman (4.8.0)
     builder (3.2.4)
     coderay (1.1.2)
     coffee-rails (4.1.1)
@@ -251,6 +252,7 @@ PLATFORMS
 DEPENDENCIES
   bootstrap (~> 4.4.1)
   bootstrap4-kaminari-views
+  brakeman
   coffee-rails (~> 4.1.0)
   devise
   factory_bot_rails
