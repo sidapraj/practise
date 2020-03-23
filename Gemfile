@@ -33,6 +33,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap', '~> 4.4.1'
 gem 'devise'
 gem 'language_list', '~> 1.2', '>= 1.2.1'
+gem 'pundit'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
