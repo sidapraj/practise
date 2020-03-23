@@ -34,6 +34,8 @@ gem 'bootstrap', '~> 4.4.1'
 gem 'devise'
 gem 'language_list', '~> 1.2', '>= 1.2.1'
 gem 'pundit'
+gem 'kaminari'
+gem 'bootstrap4-kaminari-views'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
