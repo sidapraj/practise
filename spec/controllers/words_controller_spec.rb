@@ -28,7 +28,13 @@ RSpec.describe WordsController, type: :controller do
   end
 end
   describe 'GET NEW' do
-    before { get :new }
+    context 'when user is signed in' do
+      let(:user) { create(:user) }
+
+      before do
+        sign_in(user)
+        get :new 
+      end
 
     it 'assigns @word' do
       expect(assigns(:word)).to be_a_new(Word)
@@ -37,11 +43,41 @@ end
     it 'renders the new template' do
      expect(response).to render_template(:new)
    end
+
+    it do
+     expect(response).to have_http_status(200)
+    end
+   end
+
+   context 'when user is not signed in' do
+    before do
+      get :new 
+    end
+
+  it 'does not assigns @word' do
+    expect(assigns(:word)).to eq(nil)
+  end
+
+  it 'doesn not renders the new template' do
+   expect(response).not_to render_template(:new)
+ end
+
+  it do
+   expect(response).to have_http_status(302)
+  end
+ end
+
  end
 
  describe 'Post Create' do
    subject { post :create, params }
 
+   context 'when user is signed in' do
+     let(:user) { create(:user) }
+
+    before do
+      sign_in(user)
+    end
    context 'valid  params' do
      let!(:language) { create(:language) }
      let(:params) do
@@ -51,6 +87,11 @@ end
      it 'creates a new word' do
        expect { subject }.to change(Word, :count).from(0).to(1)
      end
+     it do
+      subject
+      expect(response).to have_http_status(302)
+     end
+
    end
 
    context 'invalid params' do
@@ -58,10 +99,49 @@ end
       { word: { content: '' } }
     end
 
-    it 'does not creates a new word' do
+    it 'does not creates a new word' do 
       expect { subject }.not_to change(Word, :count)
     end
+
+    it do
+      subject
+      expect(response).to have_http_status(200)
+     end
   end
+end
+
+context 'when user is not signed in' do
+context 'valid  params' do
+  let!(:language) { create(:language) }
+  let(:params) do
+    { word: { content: 'cat', language_id: language.id } }
+  end
+
+  it 'does not creates a new word' do
+    expect { subject }.not_to change(Word, :count)
+  end
+
+  it do
+    subject
+    expect(response).to have_http_status(302)
+   end
+end
+
+context 'invalid params' do
+ let(:params) do
+   { word: { content: '' } }
+ end
+
+ it 'does not creates a new word' do 
+   expect { subject }.not_to change(Word, :count)
+ end
+
+ it do
+  subject
+  expect(response).to have_http_status(302)
+ end
+end
+end
 end
 
 describe 'GET Show' do
