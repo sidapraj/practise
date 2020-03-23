@@ -162,13 +162,21 @@ describe 'GET Show' do
 end
 
 describe 'GET edit' do
-  before { get :edit, params }
+  subject { get :edit, params }
 
-  let(:params) do
-    { id: word.id }
-  end
- 
-  let!(:word) { create(:word) }
+let(:params) do
+  { id: word.id }
+end
+let!(:word) { create(:word) }
+
+  context 'when user is signed in' do
+    let(:user) { create(:user) }
+
+   before do
+     sign_in(user)
+     subject
+   end
+   
   it 'assigns @word' do
     expect(assigns(:word)).to eq(word)
   end
@@ -178,12 +186,33 @@ describe 'GET edit' do
  end
 end
 
+context 'when user is not signed in' do
+it 'does not assigns @word' do
+  expect(assigns(:word)).to eq(nil)
+end
+
+it do
+  subject
+  expect(response).to have_http_status(302)
+end
+end
+
+end
+
 describe 'PUT Update' do
   subject { put :update, params }
 
   let!(:word) { create(:word, content:'cat', language: language_1) }
   let!(:language_1) { create(:language, name: 'English') }
   let!(:language_2) { create(:language, name: 'Polish') }
+
+  context 'when user is signed in' do
+    let(:user) { create(:user) }
+
+   before do
+     sign_in(user)
+   end
+
   context 'valid  params' do
     let(:params) do
       { id:word.id, word: { content: 'kat', language_id: language_2.id } }
@@ -210,12 +239,45 @@ describe 'PUT Update' do
  end
 end
 
+context 'when user is not signed in' do
+
+context 'valid  params' do
+  let(:params) do
+    { id:word.id, word: { content: 'kat', language_id: language_2.id } }
+  end
+
+  it 'does not updates word' do
+    expect { subject }.not_to change { word.reload.content }
+  end
+end
+
+context 'invalid params' do
+  let(:params) do
+    { id:word.id, word: { content: '' } }
+  end
+
+ it 'does not updates a new word' do
+  expect { subject }.not_to change { word.reload.content }
+ end
+end
+end
+
+end
+
 describe 'Delete destroy' do
   subject { delete :destroy, params }
 
   let!(:word) { create(:word) }
+
+  context 'when user is signed in' do
+    let(:user) { create(:user) }
+
+   before do
+     sign_in(user)
+   end
   let!(:language_1) { create(:language, name: 'English') }
   let!(:language_2) { create(:language, name: 'Polish') }
+
   context 'valid  params' do
     let(:params) do
       { id:word.id }
@@ -225,6 +287,22 @@ describe 'Delete destroy' do
       expect { subject }.to change(Word, :count).from(1).to(0)
     end
   end
+end
+
+context 'when user is not signed in' do
+let!(:language_1) { create(:language, name: 'English') }
+let!(:language_2) { create(:language, name: 'Polish') }
+
+context 'valid  params' do
+  let(:params) do
+    { id:word.id }
+  end
+
+  it 'does not deletes word' do
+    expect { subject }.not_to change(Word, :count)
+  end
+end
+end
 end
 end
 
