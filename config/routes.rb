@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root "words#index"
   resources :words
+  resources :games, only: %i[new create show]
     
 
   # The priority is based upon order of creation: first created -> highest priority.
