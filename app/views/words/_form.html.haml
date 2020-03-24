@@ -5,7 +5,9 @@
   = f.fields_for :translations do |t|
     = t.input :content
     = t.association :language
-    = t.link_to_remove('Remove this translations')
-  %p= f.link_to_add('Add a new translations', :translations)
+    %p  
+      = t.link_to_remove('Remove this translations', class: 'btn btn-danger')
+  %p
+    = f.link_to_add('Add a new translations', :translations, class: 'btn btn-primary')
 
   = f.button :submit, class: 'btn btn-primary'

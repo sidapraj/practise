@@ -16,7 +16,8 @@ class Word < ActiveRecord::Base
   private
 
   def translations_cannot_be_in_the_same_language_as_word
-    return if translations.any? { |translation| translation.language ==language }
+    if translations.any? { |translation| translation.language == language }
     errors.add(:language, 'must be different than translation language')
   end
   end
+end
