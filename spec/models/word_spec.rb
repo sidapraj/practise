@@ -6,8 +6,8 @@ RSpec.describe Word, type: :model do
   end
 
   describe 'associations' do
-    it { is_expected.to belong_to(:language) }
-    it { is_expected.to belong_to(:user) }
+        it { is_expected.to belong_to(:language) }
+        it { is_expected.to belong_to(:user) }
     it do
      is_expected.to have_many(:translations_association).class_name('Translation')
     end
