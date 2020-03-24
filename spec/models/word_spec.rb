@@ -7,6 +7,7 @@ RSpec.describe Word, type: :model do
 
   describe 'nested attribute' do
     it { is_expected.to accept_nested_attributes_for(:translations) }
+    it { is_expected.to accept_nested_attributes_for(:translations).allow_destroy(true) }
   end
   describe 'associations' do
         it { is_expected.to belong_to(:language) }
