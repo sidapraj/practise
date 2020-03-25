@@ -1,5 +1,5 @@
 module Words
-    class CheckWord
+    class CheckAnswer
 
         def initialize(word,answer)
             @word = word
