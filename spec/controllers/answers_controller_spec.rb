@@ -6,7 +6,7 @@ RSpec.describe AnswersController, type: :controller do
         @request.env['HTTP_REFERER'] = 'http://test.com/sessions/new'
         post :create, { :user => { :email => 'invalid@abc' } }
       end
-    subject { post :create, params }
+    subject { xhr :post, :create, params }
     context 'when user is signed in' do
         let(:user) { create(:user) }
    
@@ -23,7 +23,7 @@ RSpec.describe AnswersController, type: :controller do
    
         it do
             subject
-            expect(response).to have_http_status(302)
+            expect(response).to have_http_status(200)
            end
 
            it 'calls service to check answer' do
