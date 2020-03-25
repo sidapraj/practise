@@ -7,12 +7,12 @@ module Words
             @answer = answer
         end
       def call 
-       update_game_stats(success: check_answer?)
-       check_answer?
+       update_game_stats(success: good_answer?)
+       good_answer?
       end
 
       def message
-        return I18n.t('check_answer.good_answer') if check_answer?
+        return I18n.t('check_answer.good_answer') if good_answer?
         I18n.t('check_answer.bad_answer')   
          end
      
@@ -20,7 +20,7 @@ module Words
       
       attr_reader :word, :game, :answer
 
-      def check_answer?
+      def good_answer?
        @good_answer ||= word.translations.where(content: answer).exists?
       end
 

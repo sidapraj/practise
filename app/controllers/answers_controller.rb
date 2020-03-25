@@ -2,7 +2,8 @@ class AnswersController < ApplicationController
     before_action :authenticate_user!, only: %i[create]    
 
     def create
-      checker = Words::CheckAnswer.new(word, game, answer).call
+      checker = Words::CheckAnswer.new(word, game, answer)
+      checker.call
       redirect_to :back, notice: checker.message
 end
 
