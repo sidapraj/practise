@@ -10,6 +10,11 @@ module Words
        update_game_stats(success: check_answer?)
        check_answer?
       end
+
+      def message
+        return I18n.t('check_answer.good_answer') if check_answer?
+        I18n.t('check_answer.bad_answer')   
+         end
      
       private
       

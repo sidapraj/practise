@@ -3,7 +3,7 @@ class AnswersController < ApplicationController
 
     def create
       checker = Words::CheckAnswer.new(word, game, answer).call
-      redirect_to :back, notice: message(checker)
+      redirect_to :back, notice: checker.message
 end
 
     private
@@ -18,10 +18,5 @@ end
 
     def game
       Game.find(params[:answer][:game_id])
-    end
-
-    def message(checker)
-        return 'Good answer' if checker == true
-        'Bad answer'
     end
 end 
