@@ -1,5 +1,5 @@
 class WordPolicy
-  attr_reader :user, :post
+  attr_reader :user, :word
   
   def initialize(user, word)
     @user = user
